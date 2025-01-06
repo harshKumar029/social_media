@@ -5,3 +5,13 @@
 body{
     background-color: #F3F4F6;
 }
+
+.logsign:-webkit-autofill,
+.logsign:-webkit-autofill:hover,
+.logsign:-webkit-autofill:focus,
+.logsign:-webkit-autofill:active {
+  transition: background-color 1000s ease-in-out 0s;
+  -webkit-text-fill-color: #8997A6 !important; /* Keep the specific text color for password input */
+   background-color: transparent !important; /* Ensure  the background stays transparent */
+  box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset !important; /* Remove autofill box shadow */
+}
