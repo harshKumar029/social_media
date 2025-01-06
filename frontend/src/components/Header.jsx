@@ -178,7 +178,7 @@ const Header = ({ title, children }) => {
 
     return (
         <div ref={ProfileRef} className=' top-0'>
-            <div className="flex md:hidden items-center justify-between p-4 sm:px-8 bg-[#2A2A2A] border-b border-[#DEE2E6]">
+            <div className="flex md:hidden items-center justify-between p-4 sm:px-8 bg-[#fdfdfd] border-b border-[#DEE2E6]">
                 <button
                     className="md:hidden z-50"
                     onClick={() => { setIsOpen(prev => !prev); setIsOpenProfile(false); }}
@@ -189,14 +189,9 @@ const Header = ({ title, children }) => {
                     </svg>
                 </button>
 
-                <h1 className="text-2xl sm:text-3xl text-[#000000] font-semibold">{title}</h1>
+                <h1 className="text-2xl mr-10 sm:text-3xl text-[#515151] font-semibold">{title}</h1>
 
-                <div className="flex items-center sm:space-x-6">
-                    {/* Notification Code */}
-                    
-
-                    
-                </div>
+                <div></div>
             </div>
             <main >
                  {children}

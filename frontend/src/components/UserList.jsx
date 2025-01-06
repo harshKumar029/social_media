@@ -183,9 +183,13 @@ const UserList = () => {
   const handleFriendRequest = async (userId) => {
     try {
       const response = await sendFriendRequest(userId);
-      console.log(`Friend request sent to user ${userId}:`, response);
+      alert(`Friend request sent`);
     } catch (err) {
-      console.error(`Failed to send friend request to user ${userId}:`, err);
+      if (err?.response?.status === 400) {
+        alert(`🎉 You've already sent a friend request.`);
+      } else {
+        alert(`Failed to send friend request to user ${userId}. Please try again.`);
+      }
     }
   };
 
@@ -193,53 +197,51 @@ const UserList = () => {
     <div className="min-h-screen bg-[white] flex flex-col items-center">
       {/* Search Bar */}
       <div className="w-full p-2 bg-white shadow-md mb-6">
-  <input
-    type="text"
-    placeholder="Search for users..."
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-  />
-</div>
-
+        <input
+          type="text"
+          placeholder="Search for users..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        />
+      </div>
 
       {/* User List Section */}
       <div className="flex-1 w-full max-w-4xl ">
-        <div className="space-y- ">
+        <div className="space-y-4 md:space-y-0 ">
           {users.length > 0 ? (
             users.map((user) => (
               <div
                 key={user._id}
-                className=" border-b border-[#808080a5] b-[#f5f5f5] px-2 py-1 "
+                className=" border-b flex justify-between md:flex-col border-[#808080a5] b-[#f5f5f5] px-2 py-1 "
               >
                 {/* User Avatar */}
                 <div className="flex flex-row ">
-                <div className="flex-shrink-0 mr-1 lg:flex hidden mb-4 sm:mb-0">
-                  <img
-                    src={`https://ui-avatars.com/api/?name=${user.username}&background=00000099&color=fff`} // Placeholder avatar
-                    alt={user.username}
-                    className="w-7 h-7 rounded-full object-cover"
-                  />
-                </div>
+                  <div className="flex-shrink-0 mr-1  lg:flex md:hidden mb-4 sm:mb-0">
+                    <img
+                      src={`https://ui-avatars.com/api/?name=${user.username}&background=00000099&color=fff`} // Placeholder avatar
+                      alt={user.username}
+                      className="w-7 h-7 rounded-full object-cover"
+                    />
+                  </div>
 
-                {/* User Info */}
-                <div className="">
-                  <span className="text-lg font-semibold text-gray-800">
-                    {user.username.charAt(0).toUpperCase() +
-                      user.username.slice(1)}
-                  </span>
-                  <p className="text-xs text-gray-500">{user.email}</p>
-                </div>
+                  {/* User Info */}
+                  <div className="">
+                    <span className="text-lg font-semibold text-gray-800">
+                      {user.username.charAt(0).toUpperCase() +
+                        user.username.slice(1)}
+                    </span>
+                    <p className="text-xs text-gray-500">{user.email}</p>
+                  </div>
                 </div>
 
                 {/* Add Friend Button */}
                 <button
                   onClick={() => handleFriendRequest(user._id)}
-                  className="mt-4 w-6 sm:mt-0 sm:ml-auto flex  text-gray-500 rounded-full hover:bg-indigo-700 focus:outline-none transition-all duration-300"
+                  className="mt-4 items-center  px-3 py-1 md:px-0 md:py-0 md:w-6 sm:mt-0 sm:ml-auto flex bg-[#ffdbdb] md:bg-transparent text-gray-500 rounded-full  focus:outline-none transition-all duration-300"
                 >
                   <svg
-                    width="100%"
-                    height="100%"
+                    className="w-5 md:w-6"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +254,7 @@ const UserList = () => {
                       stroke-linejoin="round"
                     />
                   </svg>
-                  {/* ADD Friend */}
+                  <span className=" block ml-2  md:hidden">ADD Friend</span>
                 </button>
               </div>
             ))

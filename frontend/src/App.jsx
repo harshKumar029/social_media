@@ -9,6 +9,7 @@ import FriendList from './components/FriendList';
 import AuthLayout from './components/AuthLayout'; // Import the AuthLayout component
 import FriendRecommendations from './components/FriendRecommendations';
 import Header from './components/Header'; // Import the Header component
+import UserList from './components/UserList';
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem('token'); // Check if token exists
@@ -33,15 +34,19 @@ const App = () => {
           />
           <Route
             path="/friend-requests"
-            element={withAuthLayout(<Header title="Friend Requests"><PrivateRoute><FriendRequest /></PrivateRoute></Header>)}
+            element={withAuthLayout(<Header title="Connection Requests"><PrivateRoute><FriendRequest /></PrivateRoute></Header>)}
           />
           <Route
             path="/friendlist"
-            element={withAuthLayout(<PrivateRoute><Header title="Friend List"><FriendList /></Header></PrivateRoute>)}
+            element={withAuthLayout(<PrivateRoute><Header title="My Friend"><FriendList /></Header></PrivateRoute>)}
           />
           <Route
             path="/FriendRecommendations"
-            element={withAuthLayout(<PrivateRoute><Header title="Friend Recommendations"><FriendRecommendations /></Header></PrivateRoute>)}
+            element={withAuthLayout(<PrivateRoute><Header title="Suggestions"><FriendRecommendations /></Header></PrivateRoute>)}
+          />
+          <Route
+            path="/Search"
+            element={withAuthLayout(<PrivateRoute><Header title="Search"><UserList /></Header></PrivateRoute>)}
           />
 
           {/* Catch-all for 404 */}
