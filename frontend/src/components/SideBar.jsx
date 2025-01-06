@@ -7,6 +7,7 @@ import Support from "../assets/sidebar/suggested.svg";
 import logo from "../assets/twitterx.svg";
 import profile from "../assets/sidebar/profile.png";
 import search from "../assets/sidebar/search.svg";
+import logout from "../assets/sidebar/logout.svg";
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const SideBar = () => {
       label: "Suggestions",
       path: "/FriendRecommendations",
     },
-    { icon: Link, label: "Logout", action: "logout" },
+    { icon: logout, label: "Logout", action: "logout" },
   ];
 
   const handleLogout = async () => {
