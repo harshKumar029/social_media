@@ -6,7 +6,7 @@ import Dashboard from './components/Dashboard';
 import FriendRequest from './components/FriendRequest';
 import { UserProvider } from '../src/contexts/UserContext';
 import FriendList from './components/FriendList';
-import AuthLayout from './components/AuthLayout'; // Import the AuthLayout component
+import AuthLayout from './components/Authlayout'; 
 import FriendRecommendations from './components/FriendRecommendations';
 import Header from './components/Header'; // Import the Header component
 import UserList from './components/UserList';
